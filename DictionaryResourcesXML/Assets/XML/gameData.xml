@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gameData>
+  <cards>
+    <card key ="0">
+      <name>Magma Spawn</name>
+      <description>Charge</description>
+      <cost>2</cost>
+      <sprite>Cards/Minions/Sorcerer</sprite>
+    </card>
+
+    <card key ="1">
+      <name>Necromancer</name>
+      <description>Taunt</description>
+      <cost>3</cost>
+      <sprite>Cards/Minions/MagmaSpawn</sprite>
+    </card>
+
+    <card key ="2">
+      <name>Sorcerer</name>
+      <description>Windfury</description>
+      <cost>4</cost>
+      <sprite>Cards/Minions/MagmaSpawn</sprite>
+    </card>
+
+    <card key ="3">
+      <name>Templar</name>
+      <description>Stealth</description>
+      <cost>1</cost>
+      <sprite>Cards/Minions/MagmaSpawn</sprite>
+    </card>
+
+    <card key ="4">
+      <name>Wolf</name>
+      <description>none</description>
+      <cost>6</cost>
+      <sprite>Cards/Minions/MagmaSpawn</sprite>
+    </card>
+  </cards>
+
+  <decks>
+    <deck key ="0">
+      <card>0</card>
+      <card>1</card>
+      <card>2</card>
+      <card>3</card>
+      <card>4</card>
+    </deck>
+    
+    <deck key ="1">
+      <card>2</card>
+      <card>2</card>
+      <card>2</card>
+      <card>3</card>
+      <card>3</card>
+    </deck>
+  </decks>
+</gameData>
