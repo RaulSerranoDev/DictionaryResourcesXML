@@ -13,12 +13,18 @@ namespace Game
         public int CardCost;
         public Sprite CardSprite;
 
-        public CardInfo(int id, string name, int cost, Sprite sprite)
+        [Header("Mechanics")]
+        public bool CardHasTaunt;
+        public bool CardHasCharge;
+
+        public CardInfo(int id, string name, int cost, Sprite sprite,bool taunt, bool charge )
         {
             this.CardID = id;
             this.CardName = name;
             this.CardCost = cost;
             this.CardSprite = sprite;
+            this.CardHasTaunt = taunt;
+            this.CardHasCharge = charge;
         }
 
         public CardInfo(CardInfo other)
@@ -27,6 +33,8 @@ namespace Game
             this.CardName = other.CardName;
             this.CardCost = other.CardID;
             this.CardSprite = other.CardSprite;
+            this.CardHasTaunt = other.CardHasTaunt;
+            this.CardHasCharge = other.CardHasCharge;
         }
     }
 }

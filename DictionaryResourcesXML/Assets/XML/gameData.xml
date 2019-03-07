@@ -6,34 +6,37 @@
       <description>Charge</description>
       <cost>2</cost>
       <sprite>Cards/Minions/Sorcerer</sprite>
+      <mechanics>TAUNT</mechanics>
     </card>
 
     <card key ="1">
       <name>Necromancer</name>
       <description>Taunt</description>
       <cost>3</cost>
-      <sprite>Cards/Minions/MagmaSpawn</sprite>
+      <sprite>Cards/Minions/Sorcerer</sprite>
+      <mechanics>CHARGE</mechanics>
     </card>
 
     <card key ="2">
       <name>Sorcerer</name>
       <description>Windfury</description>
       <cost>4</cost>
-      <sprite>Cards/Minions/MagmaSpawn</sprite>
+      <sprite>Cards/Minions/Sorcerer</sprite>
+      <mechanics>TAUNT,CHARGE</mechanics>
     </card>
 
     <card key ="3">
       <name>Templar</name>
       <description>Stealth</description>
       <cost>1</cost>
-      <sprite>Cards/Minions/MagmaSpawn</sprite>
+      <sprite>Cards/Minions/Sorcerer</sprite>
     </card>
 
     <card key ="4">
       <name>Wolf</name>
       <description>none</description>
       <cost>6</cost>
-      <sprite>Cards/Minions/MagmaSpawn</sprite>
+      <sprite>Cards/Minions/Sorcerer</sprite>
     </card>
   </cards>
 

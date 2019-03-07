@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Xml;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace Game
 {
@@ -21,7 +22,17 @@ namespace Game
         }
 
         /// <summary>
-        /// Inicializa valores del GameManager en los que va a guardar los datos del XML y empieza la lectura
+        /// Parsea un string a float (1.5)
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        private static float FloatParse(string number)
+        {
+            return float.Parse(number, CultureInfo.InvariantCulture.NumberFormat);
+        }
+
+        /// <summary>
+        /// Inicializa valores del GameManager en los que va a guardar los datos del XML y empieza la lectura, se destruye cuando acaba
         /// </summary>
         private void LoadTexts()
         {
@@ -50,7 +61,7 @@ namespace Game
             {
                 foreach (XmlNode levelInfo in levelIndex)//cards, decks..
                 {
-                    switch(levelInfo.Name)
+                    switch (levelInfo.Name)
                     {
                         case "cards":
                             GetCardsInfo(levelInfo);
@@ -78,10 +89,12 @@ namespace Game
                 string name = null;
                 int cost = 0;
                 Sprite sprite = null;
+                bool taunt = false;
+                bool charge = false;
 
                 foreach (XmlNode levelCardInfo in levelCard.ChildNodes)    //cardInfo
                 {
-                    switch(levelCardInfo.Name)
+                    switch (levelCardInfo.Name)
                     {
                         case "name":
                             name = levelCardInfo.InnerText;
@@ -90,13 +103,29 @@ namespace Game
                             cost = int.Parse(levelCardInfo.InnerText);
                             break;
                         case "sprite":
-                            sprite = Resources.Load<Sprite>(levelCardInfo.InnerText);          
-                            break;                     
+                            sprite = Resources.Load<Sprite>(levelCardInfo.InnerText);
+                            break;
+                        case "mechanics":
+                            string[] mechanics = levelCardInfo.InnerText.Split(',');
+                            for (int i = 0; i < mechanics.Length; i++)
+                            {
+                                switch (mechanics[i])
+                                {
+                                    case "TAUNT":
+                                        taunt = true;
+                                        break;
+                                    case "CHARGE":
+                                        charge = true;
+                                        break;                              
+                                }
+                            }
+                            break;
+
                     }
                 }
 
                 //Se añade la carta a la lista
-                cards.Add(new CardInfo(id, name, cost, sprite));
+                cards.Add(new CardInfo(id, name, cost, sprite,taunt,charge));
             }
 
             GameManager.Instance.Cards = cards;
@@ -110,12 +139,13 @@ namespace Game
             {
                 int id = int.Parse(levelDeck.Attributes["key"].Value);
                 List<int> decksIDs = new List<int>();
+                DeckAsset asset = Resources.Load<DeckAsset>("DeckAssets/deck" + id);
 
                 foreach (XmlNode levelCardID in levelDeck.ChildNodes)    //cardIDs
                     decksIDs.Add(int.Parse(levelCardID.InnerText));
 
                 //Se añade el mazo a la lista
-                decks.Add(new DeckInfo(id,decksIDs));
+                decks.Add(new DeckInfo(id, decksIDs, asset));
             }
 
             GameManager.Instance.Decks = decks;
